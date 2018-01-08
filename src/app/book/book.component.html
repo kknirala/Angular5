@@ -1,3 +1,38 @@
-<p>
-  book works!
-</p>
+<div class="container">
+  <div class="col-md-4" *ngFor="let profile of profiles">
+    <div class="panel panel-info">
+      <div class="panel-heading">{{profile.name}}</div>
+      <div class="panel-body">
+        <div>{{profile.address_line_2 + " " + profile.city | uppercase}}</div>
+      </div>
+       <div class="panel-footer">
+          <span>{{profile.rating}} / {{ profile.rated}}</span>
+          <button class="btn btn-primary btn-sm pull-right"> Book </button>
+        </div>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+  <h2> City and their Areas </h2>
+  <ul>
+    <li *ngFor="let c of cities">
+      <b>{{c.name}}</b>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Lat</th>
+              <th>Lon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of c.areas">
+              <td> {{a.name}} </td><td>{{a.latitude}} </td><td> {{a.longitude}} </td>
+            </tr>              
+          </tbody>
+        </table> 
+      </div>
+    </li>
+  </ul>
+</div>

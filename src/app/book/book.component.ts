@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
 
-  constructor() { }
+	cities: any;
+	ids: any;
+	profiles: any;
+ 	constructor(private http: HttpClient) { }
 
-  ngOnInit() {
+ 	ngOnInit() {
+ 		this.http.get('http://scoreup.in/json/locations.json').subscribe(data => {
+  	  	this.cities = data;
+  	});
+
+  	this.http.post('http://scoreup-koa.in:3009/model/partner/list', {"obj":{"fieldset":3,"cri":{"type":"A","filter":[],"keywords":" "}}}).subscribe(data => {
+  	  this.ids = data.obj.data;
+  	  this.http.post('http://scoreup-koa.in:3009/model/partner/detail', {"obj":{"fieldset":5,"ids": this.ids}}).subscribe(data => {
+  	 this.profiles = data.obj.data;
+  	});
+  	});
+
   }
 
 }
