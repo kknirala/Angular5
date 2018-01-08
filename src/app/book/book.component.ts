@@ -18,9 +18,9 @@ export class BookComponent implements OnInit {
   	  	this.cities = data;
   	});
 
-  	this.http.post('http://scoreup-koa.in:3009/model/partner/list', {"obj":{"fieldset":3,"cri":{"type":"A","filter":[],"keywords":" "}}}).subscribe(data => {
+  	this.http.post('', {}).subscribe(data => {
   	  this.ids = data.obj.data;
-  	  this.http.post('http://scoreup-koa.in:3009/model/partner/detail', {"obj":{"fieldset":5,"ids": this.ids}}).subscribe(data => {
+  	  this.http.post('', {}).subscribe(data => {
   	 this.profiles = data.obj.data;
   	});
   	});
